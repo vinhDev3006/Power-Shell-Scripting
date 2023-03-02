@@ -1,5 +1,5 @@
 $sourceDir = "C:\Users\vinhn\Downloads"
-$destinationDir = "C:\Users\vinhn"
+$destinationDir = "C:\Users\vinhn\SortedFiles"
 $logFile = "C:\Users\vinhn\move_files.log"
 
 # All file extension collections
@@ -39,10 +39,15 @@ Get-ChildItem -Path $sourceDir -Recurse | ForEach-Object{
 
         # Check if the file already exists in the destination folder
         if(Test-Path -Path "$destination\$($_.Name)"){
-            Write-Host "File $($destination)\$($_.Name) already exists." | Tee-Object -FilePath $logFile -Append
+            $fileCount = 1
+            $fileName = $_.BaseName + "_" + $fileCount + $_.Extension
+            while(Test-Path -Path "$destination\$fileName"){
+                $fileCount++
+                $fileName = $_.BaseName + "_" + $fileCount + $_.Extension
+            }
+            Move-Item $_.FullName "$destination\$fileName"
         } else {
             Move-Item $_.FullName $destination
-            Write-Host "Moved file $($_.FullName) to $($destination)" | Tee-Object -FilePath $logFile -Append
         }
     }
 }
