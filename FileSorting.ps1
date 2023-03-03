@@ -1,6 +1,6 @@
-$sourceDir = "C:\Users\vinhn\Downloads"
-$destinationDir = "C:\Users\vinhn\SortedFiles"
-$logFile = "C:\Users\vinhn\move_files.log"
+$sourceDir = "Your Downloads Directory"
+$destinationDir = "Your Destination Directory"
+$logFile = "Your Preferred Location\move_files.log"
 
 # All file extension collections
 $imageFileExtensions = @(".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp", ".svg", ".ico", ".heic",".jfif")
