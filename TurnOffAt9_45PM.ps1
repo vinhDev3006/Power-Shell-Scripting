@@ -29,23 +29,23 @@ $synthesizer = New-Object -TypeName System.Speech.Synthesis.SpeechSynthesizer
 
 # Get the current time and calculate the shutdown time
 $currentTime = Get-Date
-$shutdownTime = $currentTime.Date.AddHours(22).AddMinutes(30)
+$shutdownTime = $currentTime.Date.AddHours(21).AddMinutes(45)
 
 # Calculate the time until shutdown
 $timeUntilShutdown = $shutdownTime - $currentTime
 
 # Check if it's past the shutdown time
 if ($currentTime -gt $shutdownTime) {
-    $message = "It's past 10:30 PM. Your computer will shut down in 30 minutes."
+    $message = "It's past 9:45 PM. Your computer will shut down in 15 minutes."
     Write-Host $message
     $synthesizer.Speak($message)
 
-    # Shutdown the computer after 30 minutes
-    Start-Sleep -Seconds 1800
+    # Shutdown the computer after 15 minutes
+    Start-Sleep -Seconds 900
     Stop-Computer -Force
 
 } else {
-    $message = "Your computer will shut down at 10:30 PM."
+    $message = "Your computer will shut down at 10 PM."
     Write-Host $message
     $synthesizer.Speak($message)
 
