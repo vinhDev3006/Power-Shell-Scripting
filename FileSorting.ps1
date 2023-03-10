@@ -21,15 +21,15 @@ Get-ChildItem -Path $sourceDir -Recurse | ForEach-Object{
         Write-Host "Skipping zip file: $($_.FullName)" | Tee-Object -FilePath $logFile -Append
     } else {
         if ($imageFileExtensions -contains $_.Extension) {
-            $destination = "$destinationDir\Pictures"
+            $destination = "$destinationDir\Sorted_Pictures"
         } elseif ($documentFileExtensions -contains $_.Extension) {
-            $destination = "$destinationDir\Documents"
+            $destination = "$destinationDir\Sorted_Documents"
         } elseif ($videoFileExtensions -contains $_.Extension) {
-            $destination = "$destinationDir\Videos"
+            $destination = "$destinationDir\Sorted_Videos"
         } elseif ($audioFileExtensions -contains $_.Extension) {
-            $destination = "$destinationDir\Music"
+            $destination = "$destinationDir\Sorted_Music"
         } else {
-            $destination = "$destinationDir\Other"
+            $destination = "$destinationDir\Sorted_Other"
         }
 
         # Check if the destination folder exists, create it if it doesn't
