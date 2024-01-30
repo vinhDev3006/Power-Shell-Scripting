@@ -17,6 +17,12 @@ Step by step to make it automatic:
     8. Click OK
 #>
 
+# Hour and Minute
+$hour = 21
+$min = 30
+
+
+
 # Load the System.Speech assembly
 Add-Type -AssemblyName System.Speech
 
@@ -29,14 +35,14 @@ $synthesizer = New-Object -TypeName System.Speech.Synthesis.SpeechSynthesizer
 
 # Get the current time and calculate the shutdown time
 $currentTime = Get-Date
-$shutdownTime = $currentTime.Date.AddHours(21).AddMinutes(15)
+$shutdownTime = $currentTime.Date.AddHours($hour).AddMinutes($min)
 
 # Calculate the time until shutdown
 $timeUntilShutdown = $shutdownTime - $currentTime
 
 # Check if it's past the shutdown time
 if ($currentTime -gt $shutdownTime) {
-    $message = "It's past 9:15 PM. Your computer will shut down in 15 minutes. GO TO SLEEP NOW"
+    $message = "It's past $($hour):$($min) PM. Your computer will shut down in 15 minutes. GO TO SLEEP NOW"
     Write-Host $message
     $synthesizer.Speak($message)
 
